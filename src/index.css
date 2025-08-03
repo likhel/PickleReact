@@ -380,4 +380,9 @@
     height: 14px;
     cursor: pointer;
   }
+
+  .custom-focus:focus {
+  border-color: #8FBC8F !important;
+  box-shadow: 0 0 0 0.25rem rgba(143, 188, 143, 0.25) !important;
+}
   
