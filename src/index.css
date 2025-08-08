@@ -1,5 +1,12 @@
-/***************** Item Page CSS **************************/
+/***************** General and Theme CSS **************************/
 
+:root {
+  --pickled-green-dark: #556B2F; /* As used in your login card header */
+  --pickled-green-medium: #8FBC8F; /* As used in your input borders and button */
+  --pickled-green-light: rgba(143, 188, 143, 0.25); /* As used in your focus ring */
+  --pickled-text-dark: #282c3f; /* Your current dark text color */
+  --pickled-text-light: #ffffff; /* Your current light text color */
+}
 
 * {
     margin: 0;
@@ -8,7 +15,7 @@
     box-sizing: border-box;
   }
   header {
-    display: flex;
+    display: flex; /* Already flex, keeping for clarity */
     background-color: #ffffff;
     height: 80px;
     justify-content: space-between;
@@ -32,7 +39,7 @@
   .nav_bar a {
     font-size: 14px;
     letter-spacing: .3px;
-    color: #282c3f;
+    color: var(--pickled-text-dark); /* Use dark text for navigation links */
     font-weight: 700;
     text-transform: uppercase;
     text-decoration: none;
@@ -40,7 +47,7 @@
     border-bottom: 5px solid #ffffff;
   }
   .nav_bar a:hover {
-    border-bottom: 4px solid #f54e77;
+    border-bottom: 4px solid var(--pickled-green-medium); /* Use medium green for hover border */
   }
   
   .nav_bar a sup {
@@ -55,11 +62,11 @@
     display: flex;
     align-items: center;
   }
-  .search_icon {
+  /* Styles for the search input and icon */
+ .search_icon {
     box-sizing: content-box;
     height: 20px;
     padding: 10px;
-  
     background-color: #f5f5f6;
     color: #282c3f;
     font-weight: 300;
@@ -73,6 +80,10 @@
     border: 0;
     border-radius: 0 4px 4px 0;
   }
+input:focus {
+ outline-color: #8FBC8F;
+}
+
   
   .action_bar {
     display: flex;
@@ -380,9 +391,4 @@
     height: 14px;
     cursor: pointer;
   }
-
-  .custom-focus:focus {
-  border-color: #8FBC8F !important;
-  box-shadow: 0 0 0 0.25rem rgba(143, 188, 143, 0.25) !important;
-}
   
