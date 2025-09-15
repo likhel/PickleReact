@@ -163,51 +163,66 @@ input:focus {
     margin: 40px 10%;
   }
   .item-container {
-    width: 250px;
-    margin: 10px;
-  }
+  width: 250px;
+  margin: 10px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+  .item-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+.item-container:has(.btn-add:hover),
+.item-container:has(.btn-remove:hover) {
+  transform: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
   .item-image {
-    width: 100%;
-  }
-  .rating {
-    font-size: 12px;
-    font-weight: 700;
-  }
-  .company-name {
-    margin-top: 15px;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1;
-    color: #282c3f;
-    margin-bottom: 6px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+  .item-content {
+  padding: 12px;
+  width: 100%;
+  text-align: center;
+}
+
   .item-name {
-    color: #535766;
-    font-size: 14px;
-    line-height: 1;
-    margin-bottom: 0;
-    margin-top: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-weight: 400;
-    display: block;
-  }
+  color: #1E293B;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 6px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item-stock {
+  font-size: 16px;
+  font-weight: 400;
+  color: #6B7280; /* gray-500 */
+  margin-left: 4px;
+}
+
   .price {
-    margin-top: 10px;
-    font-size: 14px;
-    line-height: 15px;
-    color: #282c3f;
-    white-space: nowrap;
-  }
+  margin: 6px 0 12px;
+}
+
   .current-price {
-    font-size: 14px;
-    font-weight: 700;
-    color: #282c3f;
-  }
+  font-size: 16px;
+  font-weight: 700;
+  color: #F97316;
+}
   .original-price {
     text-decoration: line-through;
     color: #7e818c;
@@ -221,16 +236,50 @@ input:focus {
     font-size: 12px;
     margin-left: 5px;
   }
-  .btn-add-bag {
-    margin-top: 8px;
+  /* .btn-add-bag {
+    margin-top: 10px;
+    margin-bottom: 10px;
     font-size: 18px;
-    width: 100%;
-    background-color: lightgreen;
+    width: 90%;
+    background-color: #22C55E;
     border: none;
     padding: 5px 15px;
     border-radius: 10px;
     cursor: pointer;
-  }
+  } */
+   .btn-add, .btn-remove {
+  width: 90%;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-add {
+  background: #3B82F6;
+  color: white;
+}
+
+.btn-add:hover {
+  background: #1c61f5ff;
+}
+
+.btn-remove {
+  background: #DC2626;
+  color: white;
+}
+
+.btn-remove:hover {
+  background: #B91C1C;
+}
   .bag-item-count {
     background-color: #f16565;
     white-space: nowrap;
@@ -391,4 +440,73 @@ input:focus {
     height: 14px;
     cursor: pointer;
   }
-  
+  /***************** Bag Summary CSS **************************/
+
+.bag-summary {
+  background-color: #f5f5f6;
+  padding: 24px;
+  border-radius: 4px;
+}
+
+.bag-details-container {
+  border-bottom: 1px solid #eaeaec;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.price-header {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #282c3f;
+}
+
+.price-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #282c3f;
+}
+
+.price-item-tag {
+  color: #535766;
+}
+
+.price-item-value {
+  font-weight: 500;
+}
+
+.priceDetail-base-discount {
+  color: #03a685;
+  font-weight: 500;
+}
+
+.price-footer {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #eaeaec;
+  color: #282c3f;
+}
+
+.btn-place-order {
+  width: 100%;
+  letter-spacing: 1px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 4px;
+  border: none;
+  padding: 12px 16px;
+  background-color: #ff3f6c;
+  color: #ffffff;
+  cursor: pointer;
+  margin-top: 16px;
+  text-transform: uppercase;
+}
+
+.css-xjhrni {
+  text-align: center;
+}

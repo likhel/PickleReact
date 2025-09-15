@@ -9,6 +9,12 @@ const BagItem = ({ item }) => {
   const handleRemoveItem = () => {
     dispatch(bagActions.removeFromBag(item.id));
   };
+
+  const discountPercentage = 45;
+  const originalPrice = item.price;
+  const currentPrice = Math.round(originalPrice * (1 - discountPercentage / 100));
+
+
   return (
     <>
       <div className="bag-item-container">
@@ -16,24 +22,20 @@ const BagItem = ({ item }) => {
           <img className="bag-item-img" src={item.image} />
         </div>
         <div className="item-right-part">
-          <div className="company">{item.company}</div>
-          <div className="item-name">{item.item_name}</div>
+          <div className="item-name">{item.name}</div>
           <div className="price-container">
-            <span className="current-price">Rs {item.current_price}</span>
-            <span className="original-price">Rs {item.original_price}</span>
+            <span className="current-price">Rs {currentPrice}</span>
+            <span className="original-price">Rs {originalPrice}</span>
             <span className="discount-percentage">
-              ({item.discount_percentage}% OFF)
+              ({discountPercentage}% OFF)
             </span>
           </div>
           <div className="return-period">
-            <span className="return-period-days">
-              {item.return_period} days
-            </span>{" "}
-            return available
+            <span className="return-period-days">14 days</span> return available
           </div>
           <div className="delivery-details">
             Delivery by
-            <span className="delivery-details-days">{item.delivery_date}</span>
+            <span className="delivery-details-days"> 10 Oct 2023</span>
           </div>
         </div>
 
@@ -46,3 +48,4 @@ const BagItem = ({ item }) => {
 };
 
 export default BagItem;
+

@@ -8,9 +8,9 @@ function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-       
-        <MyRoutes />
-        
+        <BrowserRouter>
+          <MyRoutes />
+        </BrowserRouter>
       </QueryClientProvider>
     </>
   );

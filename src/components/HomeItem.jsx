@@ -23,18 +23,29 @@ const HomeItem = ({item}) => {
     <>
       <div className="item-container">
         <img className="item-image" src={item.image} alt="item image" />
-        <div className="rating">
-          {item.rating.stars}  | {item.rating.count}
-        </div>
-        <div className="company-name">{item.company}</div>
-        <div className="item-name">{item.item_name}</div>
-        <div className="price">
-          <span className="current-price">Rs {item.current_price}</span>
-          <span className="original-price">Rs ${item.original_price}</span>
-          <span className="discount">({item.discount_percentage}% OFF)</span>
-        </div>
-       {elementFound ?<button type="button" className="btn btn-danger btn-add-bag" onClick={handleRemove}><MdDeleteForever />   Danger</button> : <button type="button" className="btn btn-success btn-add-bag" onClick={handleAddToBag}><IoIosAddCircle />   Add to Bag</button>}
+        <div className="item-name"><p style={{fontSize: "18px", color: "#1E293B"}}>{item.name} <span className="item-stock">({item.stock})</span></p>
         
+        </div>
+        <div className="price">
+          <span className="current-price">Rs {item.price}</span>
+        </div>
+       {elementFound ? (
+      <button 
+        type="button" 
+        className="btn-remove" 
+        onClick={handleRemove}
+      >
+        <MdDeleteForever /> Remove
+      </button>
+    ) : (
+      <button 
+        type="button" 
+        className="btn-add" 
+        onClick={handleAddToBag}
+      >
+        <IoIosAddCircle /> Add to Bag
+      </button>
+    )}
         
       </div>
       

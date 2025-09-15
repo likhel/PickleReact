@@ -16,18 +16,17 @@ const FetchItems = () => {
 
     dispatch(fetchStatusActions.markFetchingStarted());
 
-    fetch("http://localhost:8080/items", { signal })
+    fetch("http://127.0.0.1:8000/api/products/", { signal })
       .then((res) => {
         if (!res.ok) {
           throw new Error("Network response was not ok");
         }
         return res.json();
       })
-      .then(({ items }) => {
-        console.log(items[0])
+      .then(({results}) => {
         dispatch(fetchStatusActions.markFetchDone());
         dispatch(fetchStatusActions.markFetchingEnded());
-        dispatch(itemsActions.addInitialItems(items[0])); // Fixed typo here
+        dispatch(itemsActions.addInitialItems(results)); 
       })
       .catch((error) => {
         if (error.name !== "AbortError") {
