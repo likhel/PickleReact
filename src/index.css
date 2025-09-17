@@ -176,7 +176,7 @@ input:focus {
 }
 
   .item-container:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px);
   box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 .item-container:has(.btn-add:hover),

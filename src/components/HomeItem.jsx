@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { bagActions } from "../store/bagSlice";
 import { IoIosAddCircle } from "react-icons/io";
 import { MdDeleteForever } from "react-icons/md";
+import { FiHeart } from "react-icons/fi";
 
 const HomeItem = ({item}) => {
     
