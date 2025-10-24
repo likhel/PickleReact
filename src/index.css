@@ -555,21 +555,25 @@ input:focus {
     text-align: end;
     padding: 15px;
   }
-  
+  .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  /* padding: 0 5%;          */
+  box-sizing: border-box;
+  display: block;
+}
   .items-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 20px;
+  
+   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 10px;           
   width: 100%;
-  margin: 40px auto;
-  padding: 0 5%;
+  margin: 40px 0;
+  justify-items: center;
 }
   .item-container {
-  /* flex: 0 1 calc(25% - 20px); */
-  width: 230px;
-  margin: 40px;
-  background: #fff;
+  max-width: 320px;
+  background: white;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);

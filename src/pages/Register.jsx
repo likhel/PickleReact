@@ -15,40 +15,64 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    dispatch(setLoading(true));
+  event.preventDefault();
+  dispatch(setLoading(true));
 
-     if (password !== confirmPassword) {
-      dispatch(setError('Passwords do not match'));
-      dispatch(setLoading(false));
+  if (password !== confirmPassword) {
+    dispatch(setError('Passwords do not match'));
+    dispatch(setLoading(false));
+    return;
+  }
+
+  try {
+    const response = await fetch('http://127.0.0.1:8000/api/auth/registration/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ 
+        first_name: firstName, 
+        last_name: lastName, 
+        email, 
+        password1: password, 
+        password2: confirmPassword, 
+        phone_number: phoneNumber 
+      }),
+    });
+
+    if (!response.ok) {
+      // Get the actual error response from Django
+      const errorData = await response.json();
+      console.error('Registration error details:', errorData);
+      
+      // Display specific validation errors
+      if (errorData.email) {
+        dispatch(setError(`Email error: ${errorData.email[0]}`));
+      } else if (errorData.password1) {
+        dispatch(setError(`Password error: ${errorData.password1[0]}`));
+      } else if (errorData.password2) {
+        dispatch(setError(`Password confirmation error: ${errorData.password2[0]}`));
+      } else if (errorData.first_name) {
+        dispatch(setError(`First name error: ${errorData.first_name[0]}`));
+      } else if (errorData.last_name) {
+        dispatch(setError(`Last name error: ${errorData.last_name[0]}`));
+      } else {
+        dispatch(setError(`Registration failed: ${JSON.stringify(errorData)}`));
+      }
       return;
     }
 
-
-    try {
-      const response = await fetch('http://127.0.0.1:8000/api/auth/registration/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, first_name: firstName, last_name: lastName, email, password1: password, password2: confirmPassword, phone_number: phoneNumber }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log('Registration successful:', data);
-      navigate('/login');
-    } catch (error) {
-      console.error('Registration failed:', error);
-      dispatch(setError(error.message || 'Registration failed'));
-    } finally {
-      dispatch(setLoading(false));
-    }
-  };
-
+    const data = await response.json();
+    console.log('Registration successful:', data);
+    dispatch(setError('')); // Clear any previous errors
+    navigate('/login');
+  } catch (error) {
+    console.error('Registration failed:', error);
+    dispatch(setError(error.message || 'Registration failed'));
+  } finally {
+    dispatch(setLoading(false));
+  }
+};
   return (
     <>
       <div className="container mt-5">
@@ -84,7 +108,7 @@ const Register = () => {
                   </div>
 
 
-                  <div className="mb-3">
+                  {/* <div className="mb-3">
                     <label htmlFor="username" className="form-label">Username</label>
                     <input
                       type="text"
@@ -94,7 +118,7 @@ const Register = () => {
                       onChange={(e) => setUsername(e.target.value)}
                       style={{ '--bs-focus-ring-color': 'rgba(143, 188, 143, 0.25)', borderColor: '#8FBC8F' }}
                     />
-                  </div>
+                  </div> */}
                   <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
                     <input
